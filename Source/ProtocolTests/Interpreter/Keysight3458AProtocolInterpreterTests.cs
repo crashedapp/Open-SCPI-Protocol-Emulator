@@ -42,8 +42,8 @@ namespace ProtocolTests.Interpreter
             AssertCommandType<Keysight3458ACommand.ConfigureCurrent_>("CONF:CURR:DC").ElectricityType.Should().BeOfType<ElectricityType.DC_>();
             AssertCommandType<Keysight3458ACommand.ConfigureCurrent_>("CONFigure:CURRent:DC").ElectricityType.Should().BeOfType<ElectricityType.DC_>();
             // Test defaults
-            AssertCommandType<Keysight3458ACommand.ConfigureCurrent_>("CONF:CURR:DC").Range.Should().BeOfType<None<Range>>();
-            AssertCommandType<Keysight3458ACommand.ConfigureCurrent_>("CONFigure:CURRent:DC").Resolution.Should().BeOfType<None<Resolution>>();
+            AssertCommandType<Keysight3458ACommand.ConfigureCurrent_>("CONF:CURR:DC").Range.IsNone().Should().BeTrue();
+            AssertCommandType<Keysight3458ACommand.ConfigureCurrent_>("CONFigure:CURRent:DC").Resolution.IsNone().Should().BeTrue();
             //Test parameters
             //Test range <AUTO DEF MIN MAX>
             AssertCommandType<Keysight3458ACommand.ConfigureCurrent_>("CONFigure:CURRent:AC AUTO").Range.AssertOptionType<Range, Range.Auto_>();
@@ -98,8 +98,8 @@ namespace ProtocolTests.Interpreter
             AssertCommandType<Keysight3458ACommand.MeasureCurrent_>("MEASure:CURR:DC?").ElectricityType.Should().BeOfType<ElectricityType.DC_>();
             AssertCommandType<Keysight3458ACommand.MeasureCurrent_>("MEASure:CURRent:DC?").ElectricityType.Should().BeOfType<ElectricityType.DC_>();
             // Test defaults
-            AssertCommandType<Keysight3458ACommand.MeasureCurrent_>("MEASure:CURRent:DC?").Range.Should().BeOfType<None<Range>>();
-            AssertCommandType<Keysight3458ACommand.MeasureCurrent_>("MEASure:CURRent:DC?").Resolution.Should().BeOfType<None<Resolution>>();
+            AssertCommandType<Keysight3458ACommand.MeasureCurrent_>("MEASure:CURRent:DC?").Range.IsNone().Should().BeTrue();
+            AssertCommandType<Keysight3458ACommand.MeasureCurrent_>("MEASure:CURRent:DC?").Resolution.IsNone().Should().BeTrue();
             //Test parameters
             //Test range <AUTO DEF MIN MAX>
             AssertCommandType<Keysight3458ACommand.MeasureCurrent_>("MEASure:CURRent:AC? AUTO").Range.AssertOptionType<Range, Range.Auto_>();
@@ -136,8 +136,8 @@ namespace ProtocolTests.Interpreter
             AssertCommandType<Keysight3458ACommand.ConfigureVoltage_>("CONF:VOLT:DC").ElectricityType.Should().BeOfType<ElectricityType.DC_>();
             AssertCommandType<Keysight3458ACommand.ConfigureVoltage_>("CONFigure:VOLTage:DC").ElectricityType.Should().BeOfType<ElectricityType.DC_>();
             // Test defaults
-            AssertCommandType<Keysight3458ACommand.ConfigureVoltage_>("CONF:VOLT:DC").Range.Should().BeOfType<None<Range>>();
-            AssertCommandType<Keysight3458ACommand.ConfigureVoltage_>("CONFigure:VOLTage:DC").Resolution.Should().BeOfType<None<Resolution>>();
+            AssertCommandType<Keysight3458ACommand.ConfigureVoltage_>("CONF:VOLT:DC").Range.IsNone().Should().BeTrue();
+            AssertCommandType<Keysight3458ACommand.ConfigureVoltage_>("CONFigure:VOLTage:DC").Resolution.IsNone().Should().BeTrue();
             //Test parameters
             //Test range <AUTO DEF MIN MAX>
             AssertCommandType<Keysight3458ACommand.ConfigureVoltage_>("CONFigure:VOLTage:AC AUTO").Range.AssertOptionType<Range, Range.Auto_>();
@@ -174,8 +174,8 @@ namespace ProtocolTests.Interpreter
             AssertCommandType<Keysight3458ACommand.MeasureVoltage_>("MEAS:VOLT:DC?").ElectricityType.Should().BeOfType<ElectricityType.DC_>();
             AssertCommandType<Keysight3458ACommand.MeasureVoltage_>("MEASure:VOLTage:DC?").ElectricityType.Should().BeOfType<ElectricityType.DC_>();
             // Test defaults
-            AssertCommandType<Keysight3458ACommand.MeasureVoltage_>("MEAS:VOLT:DC?").Range.Should().BeOfType<None<Range>>();
-            AssertCommandType<Keysight3458ACommand.MeasureVoltage_>("MEASure:VOLTage:DC?").Resolution.Should().BeOfType<None<Resolution>>();
+            AssertCommandType<Keysight3458ACommand.MeasureVoltage_>("MEAS:VOLT:DC?").Range.IsNone().Should().BeTrue();
+            AssertCommandType<Keysight3458ACommand.MeasureVoltage_>("MEASure:VOLTage:DC?").Resolution.IsNone().Should().BeTrue();
             //Test parameters
             //Test range <AUTO DEF MIN MAX>
             AssertCommandType<Keysight3458ACommand.MeasureVoltage_>("MEASure:VOLTage:AC? AUTO").Range.AssertOptionType<Range, Range.Auto_>();
@@ -214,7 +214,7 @@ namespace ProtocolTests.Interpreter
         
         private static void AssertError(string input)
         {
-            new Keysight3458AProtocolInterpreter().GetCommand(input).Should().BeOfType<Error<Keysight3458ACommand>>();
+            new Keysight3458AProtocolInterpreter().GetCommand(input).IsError.Should().BeTrue();
         }
 
     }

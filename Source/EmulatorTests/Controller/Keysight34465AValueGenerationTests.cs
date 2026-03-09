@@ -93,8 +93,9 @@ namespace EmulatorTests.Controller
 			(await tasks
 					.Aggregate()
 					.ConfigureAwait(false))
+				.IsOk
 				.Should()
-				.BeOfType<Ok<List<(Keysight34465ACommand, CommandExecutionContext)>>>();
+				.BeTrue();
 
 			var outputQueue =
 				executor

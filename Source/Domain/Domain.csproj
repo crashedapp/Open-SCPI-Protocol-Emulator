@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <LangVersion>9.0</LangVersion>
+    <TargetFramework>net10.0</TargetFramework>
     <Platforms>AnyCPU;x86</Platforms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FunicularSwitch" Version="1.1.3" />
-    <PackageReference Include="System.Reactive" Version="5.0.0" />
-    <PackageReference Include="System.Reactive.Linq" Version="5.0.0" />
+    <PackageReference Include="FunicularSwitch" Version="*" />
+    <PackageReference Include="System.Reactive" Version="6.0.1" />
   </ItemGroup>
 
 </Project>

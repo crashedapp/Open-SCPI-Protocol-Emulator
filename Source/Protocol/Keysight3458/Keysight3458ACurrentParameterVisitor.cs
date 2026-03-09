@@ -3,6 +3,7 @@ using Antlr4.Runtime.Misc;
 using Domain.UnionTypes;
 using FunicularSwitch;
 using ProtocolParser.Keysight3458A;
+using Range = Domain.UnionTypes.Range;
 
 namespace Protocol.Keysight3458
 {

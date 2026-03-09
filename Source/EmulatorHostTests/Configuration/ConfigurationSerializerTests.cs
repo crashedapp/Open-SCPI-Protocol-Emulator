@@ -24,8 +24,8 @@ namespace EmulatorHostTests.Configuration
 			var json = configurationSerializer.SerializeDeviceConfigurations(deviceConfigurations);
 			var result = configurationSerializer.DeserializeDeviceConfigurations(json);
 
-			result.Should().BeOfType<Ok<DeviceConfigurations>>().Which.Value.Keysight34465AConfiguration.Should()
-				.BeOfType<None<Keysight34465AConfiguration>>();
+			result.IsOk.Should().BeTrue();
+			result.Match(ok => ok.Keysight34465AConfiguration.IsNone().Should().BeTrue(), _ => { });
 		}
 
 		[TestMethod]
@@ -34,7 +34,7 @@ namespace EmulatorHostTests.Configuration
 			var configurationSerializer = new DeviceConfigurationSerializer();
 
 			var result = configurationSerializer.DeserializeDeviceConfigurations("{}");
-			result.Should().BeOfType<Error<DeviceConfigurations>>();
+			result.IsError.Should().BeTrue();
 		}
 
 		[TestMethod]
@@ -55,8 +55,8 @@ namespace EmulatorHostTests.Configuration
 			var json = configurationSerializer.SerializeDeviceConfigurations(deviceConfigurations);
 			var result = configurationSerializer.DeserializeDeviceConfigurations(json);
 
-			result.Should().BeOfType<Ok<DeviceConfigurations>>().Which.Value.Keysight34465AConfiguration.Should()
-				.BeOfType<None<Keysight34465AConfiguration>>();
+			result.IsOk.Should().BeTrue();
+			result.Match(ok => ok.Keysight34465AConfiguration.IsNone().Should().BeTrue(), _ => { });
 		}
 
 		[TestMethod]
@@ -116,8 +116,8 @@ namespace EmulatorHostTests.Configuration
 
 			var result = configurationSerializer.DeserializeDeviceConfigurations(json);
 
-			result.Should().BeOfType<Ok<DeviceConfigurations>>().Which.Value.Keysight34465AConfiguration.Should()
-				.BeOfType<Some<Keysight34465AConfiguration>>();
+			result.IsOk.Should().BeTrue();
+			result.Match(ok => ok.Keysight34465AConfiguration.IsSome().Should().BeTrue(), _ => { });
 		}
 	}
 }
